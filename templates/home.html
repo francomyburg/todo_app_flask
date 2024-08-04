@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Helllo</h1>
+    <ul>
+        {%for todo in todos%}
+        <li>
+            <input type="checkbox" name="done" {%if todo['done']%} checked {%endif%} onchange="this.form.submit()">
+            {{ todo["name"] }}
+            <a href="{{url_for('edit',index=loop.index0)}}">edit</a>
+            <a href="{{url_for('delete',index=loop.index0)}}">delete</a>
+        </li>
+        {%endfor%}
+    </ul>
+    <form action="{{url_for('add')}}" method="post">
+        <input type="text" name="name">
+        <button type="submit">add</button>
+    </form>
+</body>
+</html>
